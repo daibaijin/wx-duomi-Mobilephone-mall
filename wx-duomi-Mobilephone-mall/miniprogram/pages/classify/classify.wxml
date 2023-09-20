@@ -1,0 +1,104 @@
+<!--pages/classify/classify.wxml-->
+<!-- <import src="classify.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" /> -->
+<view class="bigbox1">
+
+    <view class="bigbox">
+        <view class="leftbox">
+            <van-sidebar active-key="{{ activeKey }}" bind:change="onChange" >
+                <van-sidebar-item title="Xiaomi手机" />
+                <van-sidebar-item title="Redmi手机" />
+            </van-sidebar>
+        </view>
+        <view class="rightbox">
+
+            <view class="box" wx:if="{{isshow===0}}">
+                <scroll-view scroll-y="true" style="height:{{600}}px" bind:scroll="onScroll">
+
+                    <!-- 横向滑块 -->
+                    <van-tabs active="{{ active }}">
+                        <van-tab title="Xiaomo MIX系列"></van-tab>
+                        <van-tab title="Xiaomi 数字系列"></van-tab>
+                            <van-tab title="Xiaomi Civi"></van-tab>
+                           
+                    </van-tabs>
+                    
+
+
+                    <view class="list-item">
+                        <view class="boxtitle">Xiaomi MIX系列</view>
+                        <view class="card" wx:for="{{xmix}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+
+
+                    </view>
+                    <view class="list-item">
+                        <view class="boxtitle">Xiaomi 数字系列</view>
+                        <view class="card" wx:for="{{xshu}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+                    </view>
+                    <view class="list-item">
+                        <view class="boxtitle">Xiaomi Civi</view>
+                        <view class="card" wx:for="{{xcivi}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="box" wx:if="{{isshow===1}}">
+                <scroll-view scroll-y="true" style="height:{{600}}px" bind:scroll="onScroll">
+
+                    <van-tabs active="{{ active }}">
+                        <van-tab title="Redmi K系列"></van-tab>
+                        <van-tab title="Redmi Note系列"></van-tab>
+                            <van-tab title="数字系列"></van-tab>
+                           
+                    </van-tabs>
+
+
+                    <view class="list-item">
+                        <view class="boxtitle">K系列</view>
+                        <view class="card" wx:for="{{rk}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+                    </view>
+                    <view class="list-item">
+                        <view class="boxtitle">Note系列</view>
+                        <view class="card" wx:for="{{rn}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+                    </view>
+                    <view class="list-item">
+                        <view class="boxtitle">数字系列</view>
+                        <view class="card" wx:for="{{rshu}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectitem">
+
+                            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card">
+                            </van-card>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+
+        </view>
+
+    </view>
+
+</view>
+
+
+
+
+
+<!-- <van-notify id="van-notify"/> -->

@@ -1,0 +1,90 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/9/18下午4:22:10
+使用方法：
+在 C:\Users\daibaijin\Desktop\HTML文件与作业\五起js开始-2023.7.1\第十周9.4-9.11-微信小程序\我的代码\微信小程序-手机数码商城\miniprogram\pages\index\index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 C:\Users\daibaijin\Desktop\HTML文件与作业\五起js开始-2023.7.1\第十周9.4-9.11-微信小程序\我的代码\微信小程序-手机数码商城\miniprogram\pages\index\index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="sk-container">
+      <view id="scroll-y">
+        <scroll-view scroll-y="true" style="height:555px">
+          <view is="miniprogram_npm/@vant/weapp/search/index">
+            <view class="van-search search-index--van-search " style="background: #ffffff">
+              <view class="van-search__content search-index--van-search__content van-search__content--square search-index--van-search__content--square">
+                <view is="miniprogram_npm/@vant/weapp/field/index" class="van-search__field search-index--van-search__field ">
+                  <view is="miniprogram_npm/@vant/weapp/cell/index">
+                    <view class="field-index--van-field van-cell weapp-cell-index--van-cell van-cell--borderless weapp-cell-index--van-cell--borderless sk-pseudo sk-pseudo-circle" hover-class="van-cell--hover hover-class" hover-stay-time="70" style="padding: 5px 10px 5px 0; background-color: transparent;">
+                      <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-cell__left-icon-wrap weapp-cell-index--van-cell__left-icon-wrap">
+                        <view class="weapp-cell-index--van-cell__left-icon van-icon weapp-icon-index--van-icon van-icon-search weapp-icon-index--van-icon-search sk-pseudo sk-pseudo-circle" style="true"></view>
+                      </view>
+                      <view class="van-cell__value weapp-cell-index--van-cell__value ">
+                        <view class="van-field__body field-index--van-field__body van-field__body--search field-index--van-field__body--search"></view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="swiper-container">
+            <swiper autoplay="false" circular="true" current="0" duration="800" indicator-active-color="#fff" indicator-dots="true" interval="3000"></swiper>
+          </view>
+          <view class="recommendbox">
+            <view class="box-title sk-transparent sk-text-14-2857-776 sk-text sk-image">精选推荐</view>
+            <view class="recommend-list clearfix sk-pseudo sk-pseudo-circle">
+              <view class="list-item" data-index="0">
+                <image lazy-load="true" class="item-img sk-image" id="1" mode="widthFix" style="height: 180px;"></image>
+                <view class="item-bottom">
+                  <view class="item-title sk-transparent sk-text-14-2857-50 sk-text sk-image">
+                    Redmi K60 至尊版
+                  </view>
+                  <view class="desc sk-transparent sk-text-14-2857-394 sk-text sk-image">天机8100 | 真旗舰芯</view>
+                  <view class="discounts clearfix sk-pseudo sk-pseudo-circle"></view>
+                  <view class="pricebox">
+                    <view class="price sk-transparent">￥2599
+                      <text class="price-text sk-transparent sk-opacity">起</text>
+                    </view>
+                    <view class="postprice sk-transparent sk-text-14-2857-658 sk-text sk-image" style="text-decoration-color: transparent;">￥0</view>
+                  </view>
+                </view>
+              </view>
+              <view class="list-item" data-index="1">
+                <image lazy-load="true" class="item-img sk-image" id="2" mode="widthFix" style="height: 180px;"></image>
+                <view class="item-bottom">
+                  <view class="item-title sk-transparent sk-text-14-2857-691 sk-text sk-image">
+                    Redmi K60
+                  </view>
+                  <view class="desc sk-transparent sk-text-14-2857-224 sk-text sk-image">骁龙8+ | 2K 高光屏 | 5500mAh大电量</view>
+                  <view class="discounts clearfix sk-pseudo sk-pseudo-circle"></view>
+                  <view class="pricebox">
+                    <view class="price sk-transparent">￥2199
+                      <text class="price-text sk-transparent sk-opacity">起</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="list-item" data-index="2">
+                <image lazy-load="true" class="item-img sk-image" id="3" mode="widthFix" style="height: 180px;"></image>
+              </view>
+              <view class="list-item" data-index="3">
+                <image lazy-load="true" class="item-img sk-image" id="4" mode="widthFix" style="height: 180px;"></image>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</template>

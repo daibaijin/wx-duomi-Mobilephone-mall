@@ -1,0 +1,106 @@
+<!--pages/shop/shop.wxml-->
+<!-- <text>pages/shop/shop.wxml</text> -->
+<!-- <import src="shop.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" /> -->
+<view>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
+        <van-notify id="van-notify" />
+
+        <view class="gologin" wx:if="{{islogin==false}}" bind:tap="gologin">
+            <view class="box-login">
+                <view class="login">去登录</view>
+                <view class="loginbox">
+                    <image src="../../images/selecticon.png" mode="" class="select-icon" />
+                </view>
+            </view>
+        </view>
+
+        <!-- 购物车 -->
+
+        <view wx:if="{{isempty==true}}">
+            <van-empty description="购物车还是空的">
+                <van-button round type="danger" class="bottom-button" bind:tap="switch">随便看看</van-button>
+            </van-empty>
+        </view>
+
+        <view class="buycard" wx:if="{{isempty==false}}" wx:for="{{cartlist}}" wx:key="index" bind:touchstart="recordindex" data-index="{{index}}" data-key="{{item}}">
+            <van-swipe-cell right-width="{{ 65 }}" >
+               
+                <van-cell-group>
+                    <view class="buycard buycard1">
+
+                        <view class="select">
+                            <van-checkbox value="{{ item.isCheck }}" checked-color="#fd5c2f" data-index="{{index}}" data-key="{{item.id1}}" bind:change="selectOne">
+                            </van-checkbox>
+                        </view>
+                        <view class="cart-imgbox">
+                            <image src="{{item.imgurl}}" mode="" class="cart-img" />
+                        </view>
+                        <view class="cart-text">
+                            <view class="cart-name">{{item.title}}</view>
+                            <view class="type-select">{{item.type}} {{item.color}}</view>
+                            <view class="pricebox1">
+                                <viwe class="price1">￥{{item.curprice}}</viwe>
+
+                                <view class="count">
+                                    <van-stepper value="{{ item.count }}" integer bind:plus="btn_add" bind:minus="btn_minus" data-index="{{index}}" bind:change="value_update" />
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+
+                </van-cell-group>
+                <view slot="right" class="van-swipe-cell__right" bind:tap="removebuylist">删除</view>
+            </van-swipe-cell>
+
+        </view>
+
+      
+
+        <!-- 猜你喜欢 -->
+        <view class="recommendbox">
+            <!-- <view class="box-title">为你推荐</view> -->
+            <van-divider class="box-title" contentPosition="center">猜你喜欢</van-divider>
+            <view class="recommend-list clearfix">
+
+
+                <view class="list-item" wx:for="{{recommendlist}}" wx:key="index" bindload="onImageLoad" bind:tap="goshopdetail" data-index="{{index}}">
+
+                    <image id="{{item.id}}" class="item-img" src="{{item.imgurl[0]}}" mode="widthFix" />
+                    <view class="item-bottom">
+                        <view class="item-title">
+                            {{item.title}}
+                        </view>
+                        <view class="desc">{{item.desc}}</view>
+                        <view class="discounts clearfix">
+                            <view class="securities" wx:if="{{item.issecur1==1}}"> <text class="securities-text">劵</text>{{item.securities1}}
+                            </view>
+                            <view class="securities" wx:if="{{item.issecur2==1}}">{{item.securities2}}
+                            </view>
+                            <view class="securities" wx:if="{{item.issecur3==1}}"> {{item.securities3}}
+                            </view>
+
+                        </view>
+                        <view class="pricebox">
+                            <view class="price">￥{{item.curpirce[0]}}<text class="price-text">起</text>
+                            </view>
+                            <view class="postprice" wx:if="{{item.ispost === true}}">￥{{item.postprice}}</view>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+        </view>
+
+    </scroll-view>
+
+</view>
+<van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="onClickButton" tip="{{ true }}">
+    <van-tag type="primary">
+
+        <van-checkbox value="{{ isAllCheck }}" checked-color="#fd5c2f" bind:change="allSelect">
+            全选
+        </van-checkbox>
+    </van-tag>
+
+</van-submit-bar>

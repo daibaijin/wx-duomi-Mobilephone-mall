@@ -1,0 +1,496 @@
+<!--pages/shopdetail/shopdetail.wxml-->
+<!-- 商品图片 -->
+<scroll-view scroll-y="true" style="height:{{scrollH}}px" bind:scroll="onScroll" id="scroller">
+
+    <van-notify id="van-notify" />
+
+    <view class="shopimgbox" wx:if="{{isshow===true}}">
+        <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper" bind:tap="goshopdetail">
+
+            <block wx:for="{{shopdetail[0].imgurl}}" wx:key="unique">
+
+                <swiper-item>
+
+                    <image data-id="{{index}}" src="{{item}}" class="img" bindtap="swipclick" />
+
+                </swiper-item>
+
+            </block>
+
+        </swiper>
+    </view>
+
+    <view class="scaleimg" wx:if="{{isshow1==true}}">
+        <swiper indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange" class="scale-swiper" bind:tap="goshopdetail">
+
+            <block wx:for="{{shopdetail[0].imgurl}}" wx:key="unique">
+
+                <swiper-item>
+
+                    <image data-id="{{index}}" src="{{item}}" class="img" bindtap="swipclick1" />
+
+                </swiper-item>
+
+            </block>
+
+        </swiper>
+    </view>
+
+    <view class="pricebox1">
+        <text class="curprice1">￥{{shopdetail[0].curpirce[0]}}</text>
+        <text class="postprice1" wx:if="{{shopdetail[0].ispost==true}}">￥1599</text>
+        <text class="discounts1" wx:if="{{shopdetail[0].issecur1==1}}">满1000减60</text>
+    </view>
+
+    <view class="detail">
+        <view class="detail-title">{{shopdetail[0].title}}</view>
+        <view class="advantage">
+            <view class="ad-item">{{shopdetail[0].descDetail[0]}}</view>
+            <view class="ad-item">{{shopdetail[0].descDetail[1]}}</view>
+            <view class="ad-item">{{shopdetail[0].descDetail[2]}}</view>
+        </view>
+    </view>
+
+    <view class="partbox">
+        <view class="partboxtitle">配置</view>
+
+        <view class="partlist">
+            <swiper interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange" indicator-active-color="#fff" display-multiple-items="{{partcount/2}}" bind:tap="goshopdetail">
+
+                <block wx:for="{{partlist}}" wx:key="index">
+
+                    <swiper-item>
+
+                        <view class="part">
+                            <view class="partimgbox">
+                                <image src="{{item.img}}" mode="" class="partimg" />
+                            </view>
+                            <view class="part-text part-name">
+                                {{item.partname}}
+                            </view>
+                            <view class="part-text  part-desc">
+                                {{shopdetail[0].partDetail[index]}}
+                            </view>
+                        </view>
+
+                    </swiper-item>
+
+                </block>
+
+            </swiper>
+            <!-- <view class="part">
+               <view class="partimgbox">
+                <image src="../../images/cpu.png" mode="" class="partimg"/>
+               </view>
+               <view class="part-text part-name">
+               CPU
+               </view>
+               <view class="part-text  part-desc">
+               天玑 9200+
+               </view>
+            </view>
+            <view class="part">
+               <view class="partimgbox">
+                <image src="../../images/cpu.png" mode="" class="partimg"/>
+               </view>
+               <view class="part-text part-name">
+               CPU
+               </view>
+               <view class="part-text  part-desc">
+               天玑 9200+
+               </view>
+            </view>
+            <view class="part">
+               <view class="partimgbox">
+                <image src="../../images/cpu.png" mode="" class="partimg"/>
+               </view>
+               <view class="part-text part-name">
+               CPU
+               </view>
+               <view class="part-text  part-desc">
+               天玑 9200+
+               </view>
+            </view>
+            <view class="part">
+               <view class="partimgbox">
+                <image src="../../images/cpu.png" mode="" class="partimg"/>
+               </view>
+               <view class="part-text part-name">
+               CPU
+               </view>
+               <view class="part-text  part-desc">
+               天玑 9200+
+               </view>
+            </view>
+            <view class="part">
+               <view class="partimgbox">
+                <image src="../../images/cpu.png" mode="" class="partimg"/>
+               </view>
+               <view class="part-text part-name">
+               CPU
+               </view>
+               <view class="part-text  part-desc">
+               天玑 9200+
+               </view>
+            </view> -->
+
+        </view>
+
+    </view>
+    <!-- 弹出层1 -->
+    <van-popup show="{{ showyixuan }}" closeable position="bottom" custom-style="height: 80%;" bind:close="Closeyixuan">
+
+        <scroll-view scroll-y="true" style="height:800rpx" bind:scroll="onScroll1">
+            <view class="typebox">
+                <view class="type versions">版本</view>
+                <view class="typelist clearfix">
+                    <!-- type-item on -->
+                    <view class="type-item {{index == typeactive ? 'on' : ''}}" wx:for="{{shopdetail[0].type}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selecttype1">{{item}}
+
+                    </view>
+
+
+                </view>
+            </view>
+            <view class="typebox">
+                <view class="type versions">颜色</view>
+                <view class="typelist clearfix">
+                    <view class="type-item {{index == coloractive ? 'on' : ''}} " wx:for="{{shopdetail[0].color}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectcolor1">{{item}}
+                    </view>
+
+                </view>
+            </view>
+
+
+
+            <view class="countbox">
+                <view class="count-text">购买数量</view>
+                <view class="count">
+                    <van-stepper value="{{ count1 }}" bind:change="Changecount1" integer />
+                </view>
+            </view>
+
+            <view class="surebtn">
+                <van-button type="primary" size="large" bind:tap="suretype">确定</van-button>
+            </view>
+        </scroll-view>
+    </van-popup>
+    <!-- 弹出层2 -->
+    <van-popup show="{{ showaddress }}" closeable position="bottom" custom-style="height: 80%;" bind:close="Closeaddress">
+
+        <scroll-view scroll-y="true" style="height:500px" bind:scroll="onScroll1">
+            <view class="select-address">选择地址</view>
+            <van-radio-group value="{{ radio }}" bind:change="selectaddress">
+                <view class="radio" wx:for="{{addresslist}}" wx:key="index">
+                    <van-radio name="{{index}}">
+                        <view class="textbox">
+                            <view class="address1">{{item.address1}}</view>
+                            <view class="address2">{{item.address2}}</view>
+                            <view class="usermessage">
+                                <text class="username">{{item.username}}</text>
+                                <text class="tel">{{item.phone}}</text>
+                                <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                            </view>
+                        </view>
+                    </van-radio>
+                </view>
+
+            </van-radio-group>
+
+            <view class="addressbtn">
+                <van-button type="primary" round size="large" bind:tap="Closeaddress">确定</van-button>
+            </view>
+
+            <view class="addressbtn">
+                <van-button type="primary"  round size="large" bind:tap="goaddress">去添加地址</van-button>
+            </view>
+        </scroll-view>
+    </van-popup>
+
+    <view class="selectbox">
+        <view class="shopselect" bind:tap="showPopupyixuan">
+
+            <view class="select name">已选</view>
+            <view class="select select-content">{{totaltype}}
+            </view>
+            <view class="select selecticon">
+                <image src="../../images/selecticon.png" mode="" class="icon" />
+            </view>
+        </view>
+        <view class="shopselect" bind:tap="showPopupaddress">
+            <view class="select name">送至</view>
+            <view class="select select-content">
+                <view class="text-imgbox">
+                    <image src="../../images/position.png" mode="" class="text-img" />
+                </view>
+                <view>
+                    {{addressshow.address1}}
+                </view>
+                <text class="content-text">有现货</text>
+            </view>
+            <view class="select selecticon">
+                <image src="../../images/selecticon.png" mode="" class="icon" />
+            </view>
+        </view>
+        <view class="shopselect">
+            <view class="select name">服务</view>
+            <view class="select select-content">
+                <view class="text-imgbox1">
+                    <image src="../../images/ok.png" mode="" class="text-img" />
+                    <view class="icon-text">自营</view>
+                </view>
+                <view class="text-imgbox1">
+                    <image src="../../images/ok.png" mode="" class="text-img" />
+                    <view class="icon-text">7天无理由退款</view>
+                </view>
+
+            </view>
+            <view class="select selecticon">
+                <image src="../../images/selecticon.png" mode="" class="icon" />
+            </view>
+        </view>
+
+    </view>
+
+
+    <view class="shopdetailbox">
+        <van-sticky scroll-top="{{ scrollTop }}" offset-top="{{ offsetTop }}">
+            <van-tabs active="{{ active }}" line-height="0px" title-active-color="#dc755e" bind:change="onChange">
+
+                <van-tab title="商品介绍"></van-tab>
+                <van-tab title="规格参数"></van-tab>
+
+            </van-tabs>
+        </van-sticky>
+    </view>
+
+
+    <view class="shop-introduce" wx:if="{{isint==true}}">
+        <view class="imgbox">
+            <view class="item-text">
+                <view class="text1">KБ0至尊版</view>
+                <view class="text2">双芯旗舰 狂暴性能</view>
+            </view>
+            <image src="../../images/shop1-1.webp" mode="widthFix" class="img-item" />
+        </view>
+        <view class="imgbox">
+            <view class="item-text">
+                <view class="text2">为「重度性能用户」量身打造的双芯旗舰 狂暴性能</view>
+                <view class="text2">KБ0至尊版</view>
+                <view class="text2">天玑 9200+ & 独显芯片 X7 </view>
+                <view class="text2">自研科技「狂暴引擎 2.0」</view>
+                <view class="text2">快拍相机 </view>
+            </view>
+            <image src="../../images/shop1-2.webp" mode="widthFix" class="img-item" />
+        </view>
+        <view class="imgbox">
+            <view class="item-text">
+                <view class="text1">至尊性能 至尊体验</view>
+
+            </view>
+            <image src="../../images/shop1-3.webp" mode="widthFix" class="img-item" />
+        </view>
+
+
+    </view>
+
+    <view class="shop-type" wx:if="{{istype==true}}">
+        <view class="imgbox">
+            <view class="text-box">
+                <view class="item-text1">k60 至尊版
+                </view>
+                <view class="item-text2">天玑 9200+ 旗舰芯 & 独显芯片 X7
+                </view>
+                <view class="item-text2">第二代 1.5K 高亮高刷屏
+                </view>
+                <view class="item-text2">天玑 9200+ 旗舰芯 & 独显芯片 X7
+                </view>
+                <view class="item-text2">天玑 9200+ 旗舰芯 & 独显芯片 X7
+                </view>
+                <view class="item-text2">自研科技狂暴引擎 2.0
+                </view>
+                <view class="item-text2">LPDDR5X + UFS4.0 旗舰级内存配置
+                </view>
+                <view class="item-text2">
+                    索尼 IMX800 旗舰相机、OIS 光学防抖
+                </view>
+                <view class="item-text2">
+                    120W + 5000mAh 超长续航组合
+                </view>
+                <view class="item-text2">
+                    IP68 级防尘防水*、多功能 NFC 3.0、PPP 北斗高精度定位
+                </view>
+
+            </view>
+            <image src="../../images/shop1-2-1.webp" mode="widthFix" class="img-item" />
+        </view>
+        <view class="part-type imgbox">
+            <view class="title">处理器</view>
+            <view class="text-container">
+                <view class="toptext">天玑 9200+</view>
+                <view class="toptext">
+                    <view>台积电第二代&nbsp;4nm&nbsp;工艺制程</view>
+                    <view>CPU：八核处理器，最高主频 3.35GHz</view>
+                    <view>GPU：Immortalis-G715 MC11</view>
+                </view>
+            </view>
+        </view>
+        <view class="part-type imgbox">
+            <view class="title">处理器</view>
+            <view class="text-container">
+                <view class="toptext">天玑 9200+</view>
+                <view class="toptext">
+                    <view>台积电第二代&nbsp;4nm&nbsp;工艺制程</view>
+                    <view>CPU：八核处理器，最高主频 3.35GHz</view>
+                    <view>GPU：Immortalis-G715 MC11</view>
+                </view>
+            </view>
+        </view>
+        <view class="part-type imgbox">
+            <view class="title">处理器</view>
+            <view class="text-container">
+                <view class="toptext">天玑 9200+</view>
+                <view class="toptext">
+                    <view>台积电第二代&nbsp;4nm&nbsp;工艺制程</view>
+                    <view>CPU：八核处理器，最高主频 3.35GHz</view>
+                    <view>GPU：Immortalis-G715 MC11</view>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+
+    <!-- 猜你喜欢 -->
+    <view class="maylike">
+
+        <view class="recommendbox">
+            <view class="box-title">猜你喜欢</view>
+            <view class="recommend-list clearfix">
+
+
+                <view class="list-item" wx:for="{{recommendlist}}" wx:key="index" bindload="onImageLoad" bind:tap="goshopdetail" data-index="{{index}}">
+
+                    <image id="{{item.id}}" class="item-img" src="{{item.imgurl[0]}}" mode="widthFix" />
+                    <view class="item-bottom">
+                        <view class="item-title">
+                            {{item.title}}
+                        </view>
+                        <view class="desc">{{item.desc}}</view>
+                        <view class="discounts clearfix">
+                            <view class="securities" wx:if="{{item.issecur1==1}}"> <text class="securities-text">劵</text>{{item.securities1}}
+                            </view>
+                            <view class="securities" wx:if="{{item.issecur2==1}}">{{item.securities2}}
+                            </view>
+                            <view class="securities" wx:if="{{item.issecur3==1}}"> {{item.securities3}}
+                            </view>
+
+                        </view>
+                        <view class="pricebox">
+                            <view class="price">￥{{item.curpirce[0]}}<text class="price-text">起</text>
+                            </view>
+                            <view class="postprice" wx:if="{{item.ispost === true}}">￥{{item.postprice}}</view>
+                        </view>
+                    </view>
+                </view>
+
+            </view>
+        </view>
+    </view>
+
+</scroll-view>
+
+<!-- <van-button type="primary" bind:click="onClickShow">显示遮罩层</van-button> -->
+<!-- <van-overlay show="{{ show }}" bind:click="onClickHide" /> -->
+<van-overlay show="{{ show }}" class="mask">
+    <view class="buybox">
+        <view class="delbox" bind:tap="onClickHide">
+            <view class="del">×</view>
+        </view>
+        <view class="buyshop">
+            <view class="buyshopimgbox">
+                <image src="{{shopdetail[0].imgurl[0]}}" mode="heightFix" class="buyshopimg" />
+            </view>
+            <view class="buyshoptext">
+                <view class="buyshopprice">￥{{shopprice}}</view>
+                <view class="buyshopname">{{shopdetail[0].title}}</view>
+            </view>
+        </view>
+
+
+        <scroll-view scroll-y="true" style="height:300px" bind:scroll="onScroll1">
+            <view class="typebox">
+                <view class="type versions">版本</view>
+                <view class="typelist clearfix">
+                    <!-- type-item on -->
+                    <view class="type-item {{index == typeactive ? 'on' : ''}}" wx:for="{{shopdetail[0].type}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selecttype1">{{item}}
+
+                    </view>
+
+
+                </view>
+            </view>
+            <view class="typebox">
+                <view class="type versions">颜色</view>
+                <view class="typelist clearfix">
+                    <view class="type-item {{index == coloractive ? 'on' : ''}} " wx:for="{{shopdetail[0].color}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectcolor1">{{item}}
+                    </view>
+
+                </view>
+            </view>
+            <view class="typebox">
+                <view class="type versions">套餐</view>
+                <view class="typelist clearfix">
+                    <view class="type-item {{index == mealactive ? 'on' : ''}} " wx:for="{{meallist}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectmeal">{{item}}
+                    </view>
+
+
+                </view>
+            </view>
+            <view class="typebox">
+                <view class="type versions">配送方式</view>
+                <view class="typelist clearfix">
+                    <view class="type-item {{index == sendactive ? 'on' : ''}} " wx:for="{{sendlist}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="selectsend">{{item}}
+                    </view>
+                    <!-- <view class="type-item" >到店自取
+        </view> -->
+
+                </view>
+            </view>
+        </scroll-view>
+
+        <view class="countbox">
+            <view class="count-text">购买数量</view>
+            <van-stepper value="{{ count1 }}" integer bind:change="onChangecount" class="count" />
+        </view>
+        <view class="countbox">
+            <view class="count-text">总金额</view>
+            <view class="totalprice">￥{{totalprice}}</view>
+        </view>
+        <view class="submit" wx:if="{{issubmit==true}}" bind:tap="gopay">
+            确定购买
+        </view>
+        <view class="submit" wx:if="{{issubmit1==true}}" bind:tap="addbuy">
+            加入购物车
+        </view>
+
+    </view>
+</van-overlay>
+
+
+
+
+
+
+<!-- 底部 -->
+<view class="footer">
+    <van-goods-action>
+    <!-- //dot -->
+    <van-goods-action-icon icon="chat-o" text="客服"  />
+    <van-goods-action-icon icon="cart-o" text="购物车" info="{{buylength}}" wx:if="{{buylength>0}}" bind:tap="gobuy" />
+    <van-goods-action-icon icon="cart-o" text="购物车"  wx:if="{{buylength==0}}" />
+    <van-goods-action-icon icon="shop-o" text="店铺" />
+    <van-goods-action-button text="加入购物车" type="warning" bind:tap="onClickButton1" />
+    <van-goods-action-button text="立即购买" bind:tap="onClickButton" />
+</van-goods-action>
+</view>

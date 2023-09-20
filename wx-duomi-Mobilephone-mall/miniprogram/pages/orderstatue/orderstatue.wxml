@@ -1,0 +1,263 @@
+<!--pages/orderstatue/orderstatue.wxml-->
+
+<view class="bigbox">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px">
+
+        <van-notify id="van-notify" />
+
+        <view class="headtitle">我的订单</view>
+
+        <van-tabs active="{{ active }}" bind:change="onChange">
+            <van-tab title="全部">
+                <van-empty wx:if="{{isempty1==true}}" description="还没有订单哦" />
+
+                <view class="cartbox" wx:if="{{isempty1==false}}" wx:for="{{formlist}}" wx:key="index">
+                    <view class="cart-state" wx:if="{{item.formstate==0}}">待付款</view>
+                    <view class="cart-state" wx:if="{{item.formstate==1}}">待收货</view>
+                    <view class="cart-state" wx:if="{{item.formstate==2}}">待评价</view>
+                    <view class="cartshop" wx:for="{{item.formlist}}" wx:key="index">
+                        <view class="cartimgbox">
+                            <image src="{{item.imgurl}}" mode="" class="cartimg" />
+                        </view>
+                        <view class="carttext">
+                            <view class="cartname">{{item.title}}</view>
+                            <view class="carttype">
+                                {{item.type}} {{item.color}}
+                            </view>
+                        </view>
+                        <view class="cartpricebox">
+                            <view class="cartprice">
+                                <text>￥</text>{{item.curprice}}
+                            </view>
+                            <view class="cartcount">
+                                <text>×</text>{{item.count}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="totalbox">
+                        <view class="createdate">{{createdate[index]}}</view>
+                        <view class="totaltext">
+                            <view class="totalcount">共{{item.totalcount}}件商品 <text>应付金额：</text></view>
+                            <view class="totalprice">
+
+                                <text>￥</text>{{item.totalPrice}}.00
+                            </view>
+
+
+                        </view>
+
+                    </view>
+
+                    <view class="btnbox">
+                        <view class="btn delform" bind:tap="clickremove" data-index="{{index}}" data-key="{{item}}">取消订单</view>
+                        <view class="btn updateaddress" bind:tap="showPopupaddress" data-index="{{index}}" data-key="{{item}}">修改地址</view>
+                        <view class="btn pay" wx:if="{{item.formstate==0}}" bind:tap="gopay">立即付款</view>
+                    </view>
+
+
+                </view>
+
+
+            </van-tab>
+            <van-tab title="代付款">
+                <van-empty wx:if="{{isempty2==true}}" description="还没有订单哦" />
+
+                <view class="cartbox" wx:if="{{isempty1==false}}" wx:for="{{waitpay}}" wx:key="index">
+                    <view class="cart-state" wx:if="{{item.formstate==0}}">待付款</view>
+                    <view class="cart-state" wx:if="{{item.formstate==1}}">待收货</view>
+                    <view class="cart-state" wx:if="{{item.formstate==2}}">待评价</view>
+                    <view class="cartshop" wx:for="{{item.formlist}}" wx:key="index">
+                        <view class="cartimgbox">
+                            <image src="{{item.imgurl}}" mode="" class="cartimg" />
+                        </view>
+                        <view class="carttext">
+                            <view class="cartname">{{item.title}}</view>
+                            <view class="carttype">
+                                {{item.type}} {{item.color}}
+                            </view>
+                        </view>
+                        <view class="cartpricebox">
+                            <view class="cartprice">
+                                <text>￥</text>{{item.curprice}}
+                            </view>
+                            <view class="cartcount">
+                                <text>×</text>{{item.count}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="totalbox">
+                        <view class="createdate">{{createdate[index]}}</view>
+                        <view class="totaltext">
+                            <view class="totalcount">共{{item.totalcount}}件商品 <text>应付金额：</text></view>
+                            <view class="totalprice">
+
+                                <text>￥</text>{{item.totalPrice}}.00
+                            </view>
+
+
+                        </view>
+
+                    </view>
+
+                    <view class="btnbox">
+                        <view class="btn delform" bind:tap="clickremove" data-index="{{index}}" data-key="{{item}}">取消订单</view>
+                        <view class="btn updateaddress" bind:tap="showPopupaddress" data-index="{{index}}" data-key="{{item}}">修改地址</view>
+                        <view class="btn pay" wx:if="{{item.formstate==0}}" bind:tap="gopay">立即付款</view>
+                    </view>
+
+
+                </view>
+
+            </van-tab>
+            <van-tab title="待收货">
+                <van-empty wx:if="{{isempty3==true}}" description="还没有订单哦" />
+
+                <view class="cartbox" wx:if="{{isempty1==false}}" wx:for="{{waitget}}" wx:key="index">
+                    <view class="cart-state" wx:if="{{item.formstate==0}}">待付款</view>
+                    <view class="cart-state" wx:if="{{item.formstate==1}}">待收货</view>
+                    <view class="cart-state" wx:if="{{item.formstate==2}}">待评价</view>
+                    <view class="cartshop" wx:for="{{item.formlist}}" wx:key="index">
+                        <view class="cartimgbox">
+                            <image src="{{item.imgurl}}" mode="" class="cartimg" />
+                        </view>
+                        <view class="carttext">
+                            <view class="cartname">{{item.title}}</view>
+                            <view class="carttype">
+                                {{item.type}} {{item.color}}
+                            </view>
+                        </view>
+                        <view class="cartpricebox">
+                            <view class="cartprice">
+                                <text>￥</text>{{item.curprice}}
+                            </view>
+                            <view class="cartcount">
+                                <text>×</text>{{item.count}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="totalbox">
+                        <view class="createdate">{{createdate[index]}}</view>
+                        <view class="totaltext">
+                            <view class="totalcount">共{{item.totalcount}}件商品 <text>应付金额：</text></view>
+                            <view class="totalprice">
+
+                                <text>￥</text>{{item.totalPrice}}.00
+                            </view>
+
+
+                        </view>
+
+                    </view>
+
+                    <view class="btnbox">
+                        <view class="btn delform" bind:tap="clickremove" data-index="{{index}}" data-key="{{item}}">取消订单</view>
+                        <view class="btn updateaddress" bind:tap="showPopupaddress" data-index="{{index}}" data-key="{{item}}">修改地址</view>
+                        <view class="btn pay" wx:if="{{item.formstate==0}}" bind:tap="gopay">立即付款</view>
+                    </view>
+
+
+                </view>
+
+            </van-tab>
+            <van-tab title="待评价">
+                <van-empty wx:if="{{isempty4==true}}" description="还没有订单哦" />
+
+                <view class="cartbox" wx:if="{{isempty1==false}}" wx:for="{{waitcomment}}" wx:key="index">
+                    <view class="cart-state" wx:if="{{item.formstate==0}}">待付款</view>
+                    <view class="cart-state" wx:if="{{item.formstate==1}}">待收货</view>
+                    <view class="cart-state" wx:if="{{item.formstate==2}}">待评价</view>
+                    <view class="cartshop" wx:for="{{item.formlist}}" wx:key="index">
+                        <view class="cartimgbox">
+                            <image src="{{item.imgurl}}" mode="" class="cartimg" />
+                        </view>
+                        <view class="carttext">
+                            <view class="cartname">{{item.title}}</view>
+                            <view class="carttype">
+                                {{item.type}} {{item.color}}
+                            </view>
+                        </view>
+                        <view class="cartpricebox">
+                            <view class="cartprice">
+                                <text>￥</text>{{item.curprice}}
+                            </view>
+                            <view class="cartcount">
+                                <text>×</text>{{item.count}}
+                            </view>
+                        </view>
+                    </view>
+                    <view class="totalbox">
+                        <view class="createdate">{{createdate[index]}}</view>
+                        <view class="totaltext">
+                            <view class="totalcount">共{{item.totalcount}}件商品 <text>应付金额：</text></view>
+                            <view class="totalprice">
+
+                                <text>￥</text>{{item.totalPrice}}
+                            </view>
+
+
+                        </view>
+
+                    </view>
+
+                    <view class="btnbox">
+                        <view class="btn delform" bind:tap="clickremove" data-index="{{index}}" data-key="{{item}}">取消订单</view>
+                        <view class="btn updateaddress" bind:tap="showPopupaddress" data-index="{{index}}" data-key="{{item}}">修改地址</view>
+                        <view class="btn pay" wx:if="{{item.formstate==0}}" bind:tap="gopay">立即付款</view>
+                    </view>
+
+
+                </view>
+
+            </van-tab>
+        </van-tabs>
+
+        <!-- 弹出层 -->
+        <van-popup show="{{ showaddress }}" closeable position="bottom" custom-style="height: 90%;" bind:close="Closeaddress1">
+
+            <scroll-view scroll-y="true" style="height:540px" >
+
+                <view class="curtitle">收货地址</view>
+                <view class="textbox curaddres" wx:for="{{addressshow}}" wx:key="index">
+                  
+                    <view class="address1">{{item.address1}}</view>
+                    <view class="address2">{{item.address2}}</view>
+                    <view class="usermessage">
+                        <text class="username">{{item.username}}</text>
+                        <text class="tel">{{item.phone}}</text>
+                        <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                    </view>
+                </view>
+
+
+
+
+                <view class="select-address">选择地址</view>
+                <view class="radio1">
+                <van-radio-group value="{{ radio }}"  bind:change="selectaddress"wx:key="index" >
+                    <view class="radio" wx:for="{{addresslist}}" wx:key="index" >
+                        <van-radio name="{{index}}">
+                            <view class="textbox">
+                                <view class="address1">{{item.address1}}</view>
+                                <view class="address2">{{item.address2}}</view>
+                                <view class="usermessage">
+                                    <text class="username">{{item.username}}</text>
+                                    <text class="tel">{{item.phone}}</text>
+                                    <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                                </view>
+                            </view>
+                        </van-radio>
+                    </view>
+
+                </van-radio-group>
+            </view>
+
+                <view class="addressbtn">
+                    <van-button type="primary" size="large" bind:tap="Closeaddress" data-key="{{item}}">确定</van-button>
+                </view>
+            </scroll-view>
+        </van-popup>
+
+
+
+    </scroll-view>
+</view>

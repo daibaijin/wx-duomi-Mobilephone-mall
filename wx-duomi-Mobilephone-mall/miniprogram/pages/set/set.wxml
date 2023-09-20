@@ -1,0 +1,59 @@
+<!--pages/set/set.wxml-->
+
+<van-notify id="van-notify" />
+
+
+<view class="log-reg">
+    <view class="head" bind:tap="updateUSerImg">
+        <image class="auto-img" src="{{userInfo.userImg}}" mode="widthFix" />
+    </view>
+    <view class="btn" bind:tap="gologin" wx:if="{{islogin==false}}">
+        登录/注册
+    </view>
+    <view class="btn" wx:if="{{islogin==true}}">
+        <view class="username">{{userInfo.username}}</view>
+
+
+    </view>
+    <view class="userimg" bind:tap="gousermessage">
+        <image src="../../images/selecticon.png" mode="" class="img" />
+    </view>
+</view>
+
+
+
+<van-cell title="昵称" is-link bind:click="showPopup1">
+    <text>{{userInfo.username?userInfo.username:"未登录"}}</text>
+</van-cell>
+<van-cell title="收货地址" is-link bind:tap="goaddress" />
+<van-cell title="切换账号" is-link bind:click="showPopup" />
+
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 8%;" bind:close="onClose">
+    <van-button type="danger" size="large" class="quit" bind:tap="quit">切换账号</van-button>
+</van-popup>
+
+<van-popup
+  show="{{ show1 }}"
+  position="bottom"
+  custom-style="height: 30%;"
+  bind:close="onClose"
+>
+<view class="inp">
+<van-field
+    value="{{ username }}"
+    required
+    clearable
+    label="用户名"
+    icon="question-o"
+    placeholder="请输入用户名"
+    bind:click-icon="onClickIcon"
+    bind:change="Changeusername"
+  />
+</view>
+
+
+<view class="edit-btn1">
+    <van-button color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:tap="editname" class="edit-btn1" size="large">
+  修改用户名
+</van-button></view>
+</van-popup>

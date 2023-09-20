@@ -1,0 +1,87 @@
+<!--pages/address/address.wxml-->
+
+<view class="bigbox">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px">
+        <van-notify id="van-notify" />
+
+
+        <van-empty description="还没有收货地址哦" wx:if="{{isempty==true}}">
+        </van-empty>
+
+        <view class="cell" wx:for="{{addresslist}}" wx:key="index">
+            <van-cell center is-link class="" bind:click="showPopup" data-index="{{index}}" data-key="{{item}}">
+                <view class="textbox">
+                    <view class="address1">{{item.address1}}</view>
+                    <view class="address2">{{item.address2}}</view>
+                    <view class="usermessage">
+                        <text class="username">{{item.username}}</text>
+                        <text class="tel">{{item.phone}}</text>
+                        <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                    </view>
+                    <view class="desc">备注:{{item.desc}}</view>
+                </view>
+                <!-- <view class="textbox">
+                <view class="address1">广东广州市从化区鳌头镇</view>
+                <view class="address2">粤嵌科技(从化园区)</view>
+                <view class="usermessage">
+                    <text class="username">戴百津</text>
+                    <text class="tel">13268014733</text>
+                    <text class="defaulticon">默认地址</text>
+                </view>
+            </view> -->
+            </van-cell>
+        </view>
+
+        <view class="add-btn">
+            <van-button round type="info" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36));" class="add-addrss" bind:tap="showPopup">添加地址</van-button>
+        </view>
+
+
+        <van-popup show="{{ show }}" closeable position="bottom" custom-style="height: 100%" bind:close="onClose">
+            <view class="editbox">
+                <van-cell-group>
+                    <van-field value="{{ username }}" required clearable label="收货姓名" icon="question-o" placeholder="请输入用户名" bind:change="Changeusername" bind:click-icon="onClickIcon" />
+
+                    <van-field value="{{ phone }}" required clearable label="手机号吗" placeholder="请输入手机号" border="{{ false }}" bind:change="Changephone" />
+
+                    <van-field value="{{ address1 }}" required clearable label="收货地区" placeholder="省市区县、乡镇" bind:change="Changeaddress1" use-button-slot>
+
+                    </van-field>
+
+                    <van-field value="{{ address2 }}" required clearable label="详细地址" placeholder="街道、楼牌号" bind:click-icon="onClickIcon" bind:change="Changeaddress2" />
+
+                    <van-field value="{{ desc }}" label="备注" type="textarea" placeholder="请输入备注" autosize border="{{ false }}" clearable bind:change="Changedesc" />
+
+                    <view class="default">
+                        <view class="def-text">设为默认地址</view>
+                        <view class="oneselect">
+                            <van-checkbox value="{{ checked }}" icon-size="25px" bind:change="onChange1"></van-checkbox>
+                        </view>
+
+                    </view>
+                </van-cell-group>
+
+
+                <van-button slot="button"  round type="info"  type="primary" class="addressbtn1" bind:tap="getLocation">
+                    <view class="position">位置定位</view>
+                    
+                </van-button>
+
+                <van-button round type="info" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36));" class="edit-ok" bind:tap="editok" wx:if="{{isedit==false}}">添加地址</van-button>
+
+                <view class="twobtn">
+                <van-button round type="info" color="linear-gradient(to right, rgb(255, 96, 52), rgb(238, 10, 36));" class="edit-ok" bind:tap="editaddress" wx:if="{{isedit==true}}">修改地址</van-button>
+            </view>
+            
+                <van-button wx:if="{{isaddresslist==true}}" color="linear-gradient(to right, #4bb0ff, #6149f6)" round type="info" class="deladdress" bind:tap="removeaddress">
+                    删除地址
+                </van-button>
+            </view>
+
+
+        </van-popup>
+
+
+
+    </scroll-view>
+</view>

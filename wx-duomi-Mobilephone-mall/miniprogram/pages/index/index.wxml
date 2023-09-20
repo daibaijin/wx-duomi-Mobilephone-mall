@@ -1,0 +1,76 @@
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+<view id="scroll-y">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
+
+    <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:tap="gosearch"/>
+
+    <view class="swiper-container">
+
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange" 
+        indicator-active-color="#fff" 
+       
+        >
+
+            <block wx:for="{{imgUrls}}" wx:key="unique">
+
+                <swiper-item>
+
+                    <image src="{{item}}" class="img" bindtap="swipclick" data-index="{{index}}" />
+
+                </swiper-item>
+
+            </block>
+
+        </swiper>
+
+    </view>
+
+
+   
+
+
+    <view class="recommendbox">
+        <view class="box-title">精选推荐</view>
+        <view class="recommend-list clearfix">
+           
+
+            <view class="list-item" wx:for="{{recommendlist}}" wx:key="index" bindload="onImageLoad" bind:tap="goshopdetail" data-index="{{index}}">
+
+                <image id="{{item.id}}"class="item-img" src="{{item.imgurl[0]}}" mode="widthFix" lazy-load/>
+                <view class="item-bottom">
+                    <view class="item-title">
+                        {{item.title}}
+                    </view>
+                    <view class="desc">{{item.desc}}</view>
+                    <view class="discounts clearfix">
+                        <view class="securities" wx:if="{{item.issecur1==1}}"> <text class="securities-text">劵</text>{{item.securities1}}
+                        </view>
+                        <view class="securities" wx:if="{{item.issecur2==1}}">{{item.securities2}}
+                        </view>
+                        <view class="securities" wx:if="{{item.issecur3==1}}"> {{item.securities3}}
+                        </view>
+
+                    </view>
+                    <view class="pricebox">
+                        <view class="price">￥{{item.curpirce[0]}}<text class="price-text">起</text>
+                        </view>
+                        <view class="postprice" wx:if="{{item.ispost === true}}">￥{{item.postprice}}</view>
+                    </view>
+                </view>
+            </view>
+       
+        </view>
+    </view>
+
+   <view class="gotop" bind:tap="goaddshop" wx:if="{{ishide==false}}">
+        <image src="cloud://cloud1-5gbqe03v8e747423.636c-cloud1-5gbqe03v8e747423-1320647911/classify/bannerimg/gotop.png" mode="" class="gotop-img" />
+   </view>
+
+
+
+</scroll-view>
+
+
+
+</view>

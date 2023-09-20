@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+
+
+<view>
+    
+<view>
+  <view>用户名</view>
+  <view>
+    <input type="text" placeholder="输入用户名" value="{{userInfo.username}}" data-key="username" bind:change="inputUserInfo" />
+  </view>
+
+</view>
+
+<view>
+  <view>密码</view>
+  <view>
+    <input type="text" password placeholder="输入密码" value="{{userInfo.password}}" data-key="password" bind:change="inputUserInfo1" />
+  </view>
+
+</view>
+
+<button type="primary" bind:tap="login">登录</button>
+
+</view>
+<van-notify id="van-notify" />

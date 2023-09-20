@@ -1,0 +1,23 @@
+<view class="bigbox">
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px">
+        <van-notify id="van-notify" />
+
+        <view class="headtitle">个人信息</view>
+
+        <view class="cell">
+        <van-cell  title="头像"  bind:click="showPopup" >
+            <view class="headimgbox">
+            <image src="../../images/loginimg.jpeg" mode="" class="headimg"/>
+            </view>
+        </van-cell>
+        </view> 
+        <view class="cell">
+        <van-cell title="昵称" is-link bind:click="showPopup" >
+        <text>123</text>
+        </van-cell>
+    </view>
+    
+        <van-popup show="{{ show }}" position="bottom" custom-style="height: 80%;" bind:close="onClose" />
+
+    </scroll-view>
+</view>

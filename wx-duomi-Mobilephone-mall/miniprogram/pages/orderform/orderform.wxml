@@ -1,0 +1,146 @@
+<!--pages/orderform/orderform.wxml-->
+
+<view id="scroll-y">
+
+    <view class="headtitle">确认订单</view>
+    <van-notify id="van-notify" />
+    <view class="bigbox">
+        <scroll-view scroll-y="true" style="height:{{scrollH}}px">
+            <!-- bindscrolltolower="loadImages" -->
+
+
+            <van-cell center is-link bind:click="showPopupaddress">
+                <view class="textbox" wx:for="{{addressshow}}" wx:key="index">
+                    <text>{{addressshow.address1}}</text>
+                    <view class="address1">{{item.address1}}</view>
+                    <view class="address2">{{item.address2}}</view>
+                    <view class="usermessage">
+                        <text class="username">{{item.username}}</text>
+                        <text class="tel">{{item.phone}}</text>
+                        <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                    </view>
+                </view>
+                <!-- <view class="textbox">
+    <view class="address1">广东广州市从化区鳌头镇</view>
+<view class="address2">粤嵌科技(从化园区)</view>
+<view class="usermessage">
+<text class="username">戴百津</text>
+<text class="tel">13268014733</text>
+</view>
+</view> -->
+
+
+            </van-cell>
+
+            <van-popup show="{{ showaddress }}" closeable position="bottom" custom-style="height: 80%;" bind:close="Closeaddress">
+
+                
+
+                <scroll-view scroll-y="true" style="height:500px" bind:scroll="onScroll1">
+                    <view class="select-address">选择地址</view>
+                    <van-radio-group value="{{ radio }}" bind:change="selectaddress">
+                        <view class="radio" wx:for="{{addresslist}}" wx:key="index">
+                            <van-radio name="{{index}}">
+                                <view class="textbox">
+                                    <view class="address1">{{item.address1}}</view>
+                                    <view class="address2">{{item.address2}}</view>
+                                    <view class="usermessage">
+                                        <text class="username">{{item.username}}</text>
+                                        <text class="tel">{{item.phone}}</text>
+                                        <text class="defaulticon" wx:if="{{item.checked==true}}">默认地址</text>
+                                    </view>
+                                </view>
+                            </van-radio>
+                        </view>
+
+                    </van-radio-group>
+
+                    <view class="addressbtn">
+                        <van-button type="primary" round size="large" bind:tap="Closeaddress">确定</van-button>
+                    </view>
+
+                    <view class="addressbtn" >
+                        <van-button type="primary" round size="large" bind:tap="goaddress">去添加地址</van-button>
+                    </view>
+                </scroll-view>
+            </van-popup>
+
+            <view class="shopcart">
+                <view class="card" wx:for="{{curform[0].formlist}}" wx:key="index">
+                <van-card num="{{item.count}}" price="{{item.curprice}}" desc="{{item.type}} {{item.color}}" title="{{item.title}}" thumb="{{ item.imgurl }}" class="card" />
+            </view>
+
+                <!-- <van-card num="1" price="2599" desc="12GB+256GB墨羽" title="Redmi K60至尊版" thumb="{{ imageURL1[0] }}" /> -->
+
+                <view class="data">
+                    <text>配送日期</text>
+                    <text>预计9天内发货</text>
+                </view>
+            </view>
+
+            <view class="tidy">
+                <view class="total">
+                    <text>商品总价</text>
+                    <text>￥{{totalPrice}}</text>
+                </view>
+                <view class="freight">
+                    <text>运费</text>
+                    <text>包邮</text>
+                </view>
+            </view>
+
+
+            <view class='page_box' catchtap='hindKeyboard'>
+                <view class='input_view' catchtap='hindKeyboard'><text class='title'>金额</text>
+                    <view class='input_box' catchtap='showKeyboard'><text class='input_labe'>¥</text><text class='content' wx:if="{{content}}">{{content}}</text>
+                        <view class='className' wx:if="{{keyShow}}"></view>
+                        <text class='content place' wx:if="{{Icontent}}">请输入金额</text>
+
+                    </view>
+                </view>
+                <view class='keyboard {{keyShow&&"hind_box"}}'>
+                    <view class='key_box'>
+                        <view class="number_box">
+                            <view class='keys {{index==9?"zero":""}}' wx:for='{{KeyboardKeys}}' wx:key='this' catchtap='keyTap' data-keys='{{item}}'>{{item}}</view>
+                        </view>
+                        <view class="btn_box">
+                            <view class='keys' catchtap='keyTap' data-keys='<'>
+                                <!-- 根据项目实际路径引用 -->
+                                <image mode="widthFix" src="../../images/delnum.png">
+                                </image>
+                            </view>
+                            <view class="keys pay_btn" catchtap='payTap'>付款</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+
+
+        </scroll-view>
+    </view>
+
+
+    <van-button type="primary" bind:click="onClickShow">嵌入内容</van-button>
+    <van-overlay show="{{ maskshow }}" bind:click="onClickHide">
+    </van-overlay>
+
+
+
+
+
+
+
+
+
+
+
+
+    <van-submit-bar price="{{ totalPrice*100 }}" button-text="去付款" bind:submit="onClickButton" tip="{{ true }}">
+        <van-tag type="primary">
+            <text>共{{totalcount}}件</text>
+        </van-tag>
+
+    </van-submit-bar>
+
+</view>

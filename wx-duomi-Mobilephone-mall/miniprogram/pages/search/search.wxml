@@ -1,0 +1,90 @@
+<!--pages/search/search.wxml-->
+<van-search value="{{ value }}" placeholder="请输入搜索关键词" show-action bind:search="onSearch" bind:cancel="onCancel" bind:change="onChange" bind:tap="onSearch1" />
+
+<!-- 遮罩层 -->
+<van-popup show="{{ shopshow}}" closeable position="bottom" custom-style="height: 100%;" bind:close="Closeaddress">
+
+    <scroll-view scroll-y="true" style="height:600px" >
+        <view class="select-address">
+            <view class="searchkey">“ {{value}} ”</view> 搜索结果共 <text class="count">{{count}}</text> 条
+        </view>
+
+        <van-empty description="无相关搜索" wx:if="{{isempty==true}}" />
+
+        <view class="card" wx:for="{{searchresult }}" wx:key="index" data-index="{{index}}" data-key="{{item}}" >
+
+           <view class="card">
+            <van-card price="{{item.curpirce[0]}}起" title="{{item.title}}" desc="{{item.desc}}" thumb="{{item.imgurl[0]}}" class="card" bind:tap="goshopdetail" data-key="{{item}}" data-index="{{index}}">
+            </van-card>
+           </view>
+        </view>
+
+    </scroll-view>
+</van-popup>
+
+
+
+<view class="history">
+    <view class="his-head">
+        <view class="his-title">搜索历史</view>
+        <view class="more">
+            <image src="../../images/delicon.png" mode="" class="moreicon" bind:tap="showdel" />
+        </view>
+    </view>
+    <view class="his-box clearfix">
+        <view class="his-item" wx:for="{{history}}" wx:key="index" data-key="{{item}}" bind:tap="clickhistory">
+            <text>{{item}}</text>
+            <view class="del" bind:tap="delhistory" data-index="{{index}}" data-key="{{item}}" wx:if="{{isshow==true}}">×</view>
+        </view>
+
+    </view>
+
+</view>
+<view class="search-recommend">
+    <view class="rec-head">
+        <view class="rec-title">猜你想搜</view>
+        <view class="more">
+            <image src="../../images/moreicon.png" mode="" class="moreicon" bind:tap="more" />
+        </view>
+    </view>
+    <view class="rec-box clearfix">
+        <view class="rec-item" wx:for="{{showrecommend}}" wx:key="index" data-index="{{index}}" data-key="{{item}}" bind:tap="clickwant">{{item}}
+        </view>
+
+
+    </view>
+
+</view>
+
+<view class="hotsearch">
+    <view class="hot-title">热门搜索</view>
+    <view class="recommendbox">
+
+        <view class="recommend-list clearfix">
+
+
+            <view class="list-item" wx:for="{{hotsearch}}" wx:key="index" bind:tap="goshopdetail" data-index="{{index}}" data-key="{{item}}">
+
+                <image id="{{item.id}}" class="item-img" src="{{item.imgurl[0]}}" mode="widthFix" lazy-load="true"/>
+                <view class="item-bottom">
+                    <view class="item-title">
+                        {{item.title}}
+                    </view>
+                    <view class="desc">{{item.desc}}</view>
+                    <view>
+                        <text class="text-icon new" wx:if="{{item.isnew==true}}">新</text>
+                        <text class="text-icon hot" wx:if="{{item.ishot==true}}">热</text>
+                        <text class="text-icon rec" wx:if="{{item.isrecommend==true}}">荐</text>
+                    </view>
+                    <view class="pricebox">
+                        <view class="price">￥{{item.curpirce[0]}}<text class="price-text">起</text>
+                        </view>
+                        <view class="postprice" wx:if="{{item.ispost === true}}">￥{{item.postprice}}</view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+    </view>
+ 
+</view>

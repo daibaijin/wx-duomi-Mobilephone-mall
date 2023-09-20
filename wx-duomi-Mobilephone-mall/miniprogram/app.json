@@ -1,0 +1,94 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/classify/classify",
+        "pages/Home/Home",
+        "pages/shop/shop",
+        "pages/my/my",
+        "components/waterfall/waterfall",
+        "pages/search/search",
+        "pages/shopdetail/shopdetail",
+        "pages/login/login",
+        "pages/set/set",
+        "pages/usermessage/usermessage",
+        "pages/orderform/orderform",
+        "pages/orderstatue/orderstatue",
+        "pages/address/address",
+        "pages/addshop/shopapp",
+        "pages/addshop/addshop"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#eaeff5",
+        "navigationBarTitleText": "BD手机数码商城",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true
+    },
+    "sitemapLocation": "sitemap.json",
+    
+    "lazyCodeLoading": "requiredComponents",
+    "tabBar": {
+        "color": "#686868",
+        "selectedColor": "#ff6325",
+        "backgroundColor": "white",
+        "custom": false,
+        "position": "bottom",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "./images/home.png",
+                "selectedIconPath": "./images/homeactive.png"
+            },
+            {
+                "pagePath": "pages/classify/classify",
+                "text": "分类",
+                "iconPath": "./images/classify.png",
+                "selectedIconPath": "./images/classifyactive.png"
+            },
+            {
+                "pagePath": "pages/shop/shop",
+                "text": "购物车",
+                "iconPath": "./images/shop.png",
+                "selectedIconPath": "./images/shopactive.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "./images/my.png",
+                "selectedIconPath": "./images/myactive.png"
+            }
+        ]
+    },
+    "usingComponents": {
+        "van-button": "@vant/weapp/button/index",
+        "van-search": "@vant/weapp/search/index",
+        "van-goods-action": "@vant/weapp/goods-action/index",
+        "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+        "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+        "van-tab": "@vant/weapp/tab/index",
+        "van-tabs": "@vant/weapp/tabs/index",
+        "van-sticky": "@vant/weapp/sticky/index",
+        "van-overlay": "@vant/weapp/overlay/index",
+        "van-stepper": "@vant/weapp/stepper/index",
+        "van-sidebar": "@vant/weapp/sidebar/index",
+        "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+        "van-card": "@vant/weapp/card/index",
+        "van-icon": "@vant/weapp/icon/index",
+        "van-notify": "@vant/weapp/notify/index",
+        "van-popup": "@vant/weapp/popup/index",
+        "van-cell": "@vant/weapp/cell/index",
+        "van-cell-group": "@vant/weapp/cell-group/index",
+        "van-submit-bar": "@vant/weapp/submit-bar/index",
+        "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+        "van-empty": "@vant/weapp/empty/index",
+        "van-radio": "@vant/weapp/radio/index",
+        "van-radio-group": "@vant/weapp/radio-group/index",
+        "van-checkbox": "@vant/weapp/checkbox/index",
+        "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+        "van-divider": "@vant/weapp/divider/index",
+        "van-action-sheet": "@vant/weapp/action-sheet/index",
+        "van-field": "@vant/weapp/field/index"
+    }
+}

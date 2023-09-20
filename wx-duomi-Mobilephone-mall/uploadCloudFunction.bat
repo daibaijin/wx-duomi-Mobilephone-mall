@@ -1,0 +1,1 @@
+"C:\Users\daibaijin\Desktop\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-5gbqe03v8e747423 --n quickstartFunctions --r --project "C:\Users\daibaijin\Desktop\HTML文件与作业\五起js开始-2023.7.1\第十周9.4-9.11-微信小程序\我的代码\微信小程序-手机数码商城" --report_first --report

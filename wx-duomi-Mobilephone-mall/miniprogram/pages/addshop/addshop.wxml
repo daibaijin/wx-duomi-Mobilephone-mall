@@ -1,0 +1,293 @@
+<!--pages/addshop/addshop.wxml-->
+
+<van-notify id="van-notify" />
+
+<view class="fengen">
+</view>
+
+<!-- id -->
+<view class="fengen">
+<view>请选择id</view>
+<van-radio-group value="{{ radio }}" bind:change="Changeid">
+  <van-radio name="1">id 1</van-radio>
+  <van-radio name="2">id 2</van-radio>
+  <van-radio name="3">id 3</van-radio>
+  <van-radio name="4">id 4</van-radio>
+</van-radio-group>
+</view>
+
+<!-- url -->
+<view class="fengen">
+
+    <van-field
+    value="{{ imgUrl1 }}"
+    required
+    clearable
+    label="图片路径"
+    bind:change="Changeurl1"
+    placeholder="请输入图片路径1"
+   
+  />
+    <van-field
+    value="{{ imgUrl2 }}"
+    required
+    clearable
+    label="图片路径"
+    bind:change="Changeurl2"
+    placeholder="请输入图片路径2"
+   
+  />
+    <van-field
+    value="{{ imgUrl3 }}"
+    required
+    clearable
+    label="图片路径"
+    bind:change="Changeurl3"
+    placeholder="请输入图片路径3"
+   
+  />
+    <van-field
+    value="{{ imgUrl4 }}"
+    required
+    clearable
+    label="图片路径"
+    bind:change="Changeurl4"
+    placeholder="请输入图片路径4"
+   
+  />
+</view>
+
+
+
+<!-- title -->
+<view class="fengen">
+
+<van-field
+value="{{ title }}"
+required
+clearable
+label="商品名称"
+bind:change="Changetitle"
+placeholder="请输入商品名称"
+
+/>
+</view>
+
+<!-- desc -->
+<view class="fengen">
+
+<van-field
+value="{{ desc }}"
+required
+clearable
+label="商品描述"
+bind:change="Changedesc"
+placeholder="请输入商品描述"
+
+/>
+</view>
+
+<!-- tag商品类型 -->
+<!-- 1   2   3 -->
+<!--  Xiaomo MIX系列、Xiaomi 数字系列、
+Xiaomi Civi -->
+<!-- 4、5、6 -->
+<!-- Redmi K系列、Redmi Note系列、Redmi 数字系列 -->
+<view class="fengen">
+
+    <view class="fengen">
+<view>tag商品类型</view>
+<van-radio-group value="{{ radiotag }}" bind:change="Changetag">
+  <van-radio name="1"> Xiaomo MIX系列</van-radio>
+  <van-radio name="2">Xiaomi 数字系列</van-radio>
+  <van-radio name="3">Xiaomi Civi</van-radio>
+  <van-radio name="4">Redmi K系列</van-radio>
+  <van-radio name="5">Redmi Note系列</van-radio>
+  <van-radio name="6">Redmi 数字系列</van-radio>
+</van-radio-group>
+</view>
+</view>
+
+<!-- ishot-->
+<view class="fengen">
+    <van-checkbox value="{{ ishot }}" bind:change="Changehot">是否为热门</van-checkbox>
+</view>
+<!-- isnew-->
+<view class="fengen">
+    <van-checkbox value="{{ isnew }}" bind:change="Changenew">是否为新品</van-checkbox>
+</view>
+<!-- isrecommend-->
+<view class="fengen">
+    <van-checkbox value="{{ isrecommend }}" bind:change="Changerecommend">是否为推荐</van-checkbox>
+</view>
+
+
+<!-- descDetail -->
+<view class="fengen">
+
+<van-field
+value="{{ descDetail1 }}"
+required
+clearable
+label="商品描述详情"
+bind:change="ChangedescDetail1"
+placeholder="请输入商品描述"
+
+/>
+<van-field
+value="{{ descDetail2 }}"
+required
+clearable
+label="商品描述"
+bind:change="ChangedescDetail2"
+placeholder="请输入商品描述"
+
+/>
+<van-field
+value="{{ descDetail3 }}"
+required
+clearable
+label="商品描述"
+bind:change="ChangedescDetail3"
+placeholder="请输入商品描述"
+
+/>
+</view>
+<!-- partDetail -->
+<view class="fengen">
+
+<van-field
+value="{{ partDetail1 }}"
+required
+clearable
+label="零件描述详情"
+bind:change="ChangepartDetail1"
+placeholder="请输入商品描述"
+
+/>
+<van-field
+value="{{ partDetail2 }}"
+required
+clearable
+label="商品描述"
+bind:change="ChangepartDetail2"
+placeholder="请输入商品描述"
+
+/>
+<van-field
+value="{{ partDetail3 }}"
+required
+clearable
+label="商品描述"
+bind:change="ChangepartDetail3"
+placeholder="请输入商品描述"
+
+/>
+<van-field
+value="{{ partDetail4 }}"
+required
+clearable
+label="商品描述"
+bind:change="ChangepartDetail4"
+placeholder="请输入商品描述"
+
+/>
+</view>
+
+
+
+
+<!-- curprice-->
+<view class="fengen">
+
+<van-field
+value="{{ curpirce1 }}"
+required
+clearable
+label="现在价格"
+bind:change="Changecurpirce1"
+placeholder="请输入现在价格1"
+
+/>
+<van-field
+value="{{ curpirce2 }}"
+required
+clearable
+label="现在价格"
+bind:change="Changecurpirce2"
+placeholder="请输入现在价格2"
+
+/>
+<van-field
+value="{{ curpirce3 }}"
+required
+clearable
+label="现在价格"
+bind:change="Changecurpirce3"
+placeholder="请输入现在价格3"
+
+/>
+</view>
+
+
+<!-- type-->
+<view class="fengen">
+
+<van-field
+value="{{ type1 }}"
+required
+clearable
+label="规格1"
+bind:change="Changetype1"
+placeholder="请输入规格1"
+/>
+<van-field
+value="{{ type2 }}"
+required
+clearable
+label="规格2"
+bind:change="Changetype2"
+placeholder="请输入规格2"
+/>
+<van-field
+value="{{ type3 }}"
+required
+clearable
+label="规格3"
+bind:change="Changetype3"
+placeholder="请输入规格3"
+/>
+</view>
+
+
+<!-- color-->
+<view class="fengen">
+
+<van-field
+value="{{ color1 }}"
+required
+clearable
+label="颜色1"
+bind:change="Changecolor1"
+placeholder="请输入颜色1"
+/>
+<van-field
+value="{{ color2 }}"
+required
+clearable
+label="颜色2"
+bind:change="Changecolor2"
+placeholder="请输入颜色2"
+/>
+<van-field
+value="{{ color3 }}"
+required
+clearable
+label="颜色3"
+bind:change="Changecolor3"
+placeholder="请输入颜色2"
+/>
+</view>
+
+
+<van-button type="primary" bind:tap="sendshop" size="large">上传数据</van-button>

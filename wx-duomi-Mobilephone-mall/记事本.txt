@@ -1,0 +1,68 @@
+
+
+
+戴大大
+13048004060
+广东省广州市白云区人和镇
+人和地铁站
+
+
+Xiaomi MIX Fold 3
+¥8999起
+
+Xiaomi MIX Fold 2
+¥8999起
+
+Xiaomi MIX Alpha
+¥19999
+-------
+Xiaomi 13 Ultra
+¥5499
+
+Xiaomi 13 Pro
+¥4999起
+
+Xiaomi 13
+¥3999起
+--------
+Xiaomi Civi 3
+¥2499起
+
+Xiaomi Civi 2
+¥2299起
+-------
+--------
+Redmi K60 至尊版
+¥2599起
+
+Redmi K60 Pro
+¥2899起
+
+Redmi K60
+¥2099起
+--------
+Redmi Note 12T Pro
+¥1499起
+
+Redmi Note 12T Turbo
+¥1799起
+
+Redmi Note 11T Pro
+¥1499起
+-------
+Redmi 12 5G
+¥949起
+
+Redmi 12C
+¥619起
+
+Redmi 12R
+¥999起
+
+
+  address1: "广东广州市从化区鳌头镇",
+    address2: "粤嵌科技(从化园区)",
+   username: "戴百津",
+   phone: "13268014733",
+    checked: true
+

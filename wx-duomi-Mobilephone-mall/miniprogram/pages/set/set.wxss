@@ -1,0 +1,55 @@
+/* pages/set/set.wxss */
+
+.userimg{
+    width: 40rpx;
+    height: 40rpx;
+    /* border: 2px solid gray; */
+    border-radius: 50%;
+    position: absolute;
+    top: 80rpx;
+    right: 30rpx;
+}
+.img{
+    width: 100%;
+    height: 100%;
+}
+.log-reg{
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    padding-bottom: 40rpx;
+    position: relative;
+}
+.head{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background-color: #e8e8e8;
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+    overflow: hidden;
+    border: 2px solid #e8e8e8;
+}
+.auto-img{
+    width: 100%;
+}
+.btn{
+    /* font-weight: bold; */
+    margin-top: 60rpx;
+    margin-left: 20rpx;
+}
+.username{
+    font-size: 20px;
+    font-weight: bold;
+}
+.inp{
+    margin: 40rpx 0px;
+    border-bottom:1px solid #e8e8e8 ;
+}
+.edit-btn{
+    margin-left: 178rpx;
+}
+.edit-btn1{
+    margin-left: 0;
+}

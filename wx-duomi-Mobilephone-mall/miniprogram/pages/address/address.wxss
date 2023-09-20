@@ -1,0 +1,94 @@
+/* pages/address/address.wxss */
+
+.cell{
+    margin-top: 80rpx;
+    margin-bottom: 80rpx;
+}
+.textbox {
+    margin-right: 200px;
+    white-space: nowrap;
+    color: black;
+    text-align: left;
+}
+.desc{
+    text-align: left;
+}
+
+.address1 {
+    font-size: 16px;
+}
+.addressbtn1{
+    /* width: 60rpx; */
+    /* overflow: hidden; */
+    display: flex;
+}
+.position{
+    font-size: 16px;
+}
+.addressimgbox{
+    width: 60rpx;
+    height: 60rpx;
+    overflow: hidden;
+    float: left;
+    
+}
+.addressimg{
+    width: 100%;
+    height: 100%;
+}
+
+.address2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+.tel {
+    margin-left: 40rpx;
+}
+.add-addrss{
+    margin-left: 150px;
+}
+.add-btn{
+    width: 100%;
+    margin-top:40rpx ;
+}
+.editbox{
+    width: 96%;
+    margin: auto;
+    /* height: 400px; */
+    /* background-color: red; */
+    margin-top: 40px;
+}
+.default{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    padding: 20rpx 10rpx;
+    padding-left: 20rpx;
+    margin-top: 40rpx;
+    border-radius: 20rpx;
+    margin-bottom: 80rpx;
+}
+.defaulticon{
+    color: #fd5432;
+    margin-left: 20rpx;
+    font-size: 14px;
+    border: 1px solid #fd5432;
+    padding: 6rpx;
+    
+}
+.twobtn{
+    margin: 40rpx 0px;
+}
+.edit-ok{
+    
+    font-size: 20px;
+    margin-left: 270rpx;
+}
+.deladdress{
+    font-size: 20px;
+    margin-left: 270rpx;
+}

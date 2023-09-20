@@ -1,0 +1,105 @@
+<!--pages/my/my.wxml-->
+<!-- <import src="my.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" /> -->
+<view>
+    <scroll-view scroll-y="true" style="height:{{scrollH}}px" bindscrolltolower="loadImages">
+
+        <view class="headtool clearfix">
+            <view class="iconbox">
+                <van-icon name="setting-o" size="40rpx" bind:tap="goset" />
+                <view class="icon">
+                    <image src="../../images/messageicon.png" mode="" class="icon-img" />
+                </view>
+            </view>
+        </view>
+
+        <view class="log-reg">
+            <view class="head" bind:tap="updateUSerImg">
+                <image class="auto-img" src="{{userInfo.userImg}}" mode="widthFix" />
+            </view>
+            <view class="btn" bind:tap="gologin" wx:if="{{islogin==false}}">
+                登录/注册
+            </view>
+            <view class="btn" wx:if="{{islogin==true}}" bind:tap="goset">
+                <view class="username">{{userInfo.username}}</view>
+
+
+            </view>
+        </view>
+
+        <view class="toolbox">
+            <view class="top">
+                <view class="top-item">收藏 </view>
+                <text class="line"></text>
+                <view class="top-item">足迹 </view>
+                <text class="line1"></text>
+                <view class="top-item">关注</view>
+            </view>
+            <view class="bottom">
+                <view class="bottom-item" bind:tap="goorderstatue" data-index="1">
+                    <view class="bot-imgbox">
+                        <image src="../../images/wait1icon.png" mode="" class="bot-img" />
+                    </view>
+                    <view class="bot-text">待付款</view>
+                </view>
+                <view class="bottom-item" bind:tap="goorderstatue" data-index="2">
+                    <view class="bot-imgbox">
+                        <image src="../../images/wait2icon.png" mode="" class="bot-img" />
+                    </view>
+                    <view class="bot-text">待收货</view>
+                </view>
+                <view class="bottom-item" bind:tap="goorderstatue" data-index="3">
+                    <view class="bot-imgbox">
+                        <image src="../../images/wait3icon.png" mode="" class="bot-img" />
+                    </view>
+                    <view class="bot-text">待评价</view>
+                </view>
+                <view class="bottom-item" data-index="4">
+                    <view class="bot-imgbox">
+                        <image src="../../images/exchangeicon.png" mode="" class="bot-img" />
+                    </view>
+                    <view class="bot-text">退换/售后</view>
+                </view>
+                <view class="bottom-item" bind:tap="goorderstatue" data-index="0">
+                    <view class="bot-imgbox">
+                        <image src="../../images/formicon.png" mode="" class="bot-img" />
+                    </view>
+                    <view class="bot-text">全部订单</view>
+                </view>
+            </view>
+        </view>
+
+        <view class="recommendbox">
+        <view class="box-title">为你推荐</view>
+        <view class="recommend-list clearfix">
+           
+
+            <view class="list-item" wx:for="{{recommendlist}}" wx:key="index" bindload="onImageLoad" bind:tap="goshopdetail" data-index="{{index}}">
+
+                <image id="{{item.id}}"class="item-img" src="{{item.imgurl[0]}}" mode="widthFix" />
+                <view class="item-bottom">
+                    <view class="item-title">
+                        {{item.title}}
+                    </view>
+                    <view class="desc">{{item.desc}}</view>
+                    <view class="discounts clearfix">
+                        <view class="securities" wx:if="{{item.issecur1==1}}"> <text class="securities-text">劵</text>{{item.securities1}}
+                        </view>
+                        <view class="securities" wx:if="{{item.issecur2==1}}">{{item.securities2}}
+                        </view>
+                        <view class="securities" wx:if="{{item.issecur3==1}}"> {{item.securities3}}
+                        </view>
+
+                    </view>
+                    <view class="pricebox">
+                        <view class="price">￥{{item.curpirce[0]}}<text class="price-text">起</text>
+                        </view>
+                        <view class="postprice" wx:if="{{item.ispost === true}}">￥{{item.postprice}}</view>
+                    </view>
+                </view>
+            </view>
+       
+        </view>
+    </view>
+    </scroll-view>
+</view>
